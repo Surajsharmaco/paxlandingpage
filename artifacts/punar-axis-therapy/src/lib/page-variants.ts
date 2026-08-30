@@ -21,7 +21,7 @@ export const SERVICE_LABELS: Record<ServiceKey, string> = {
 
 export const LANDING_PAGE_VARIANTS: Record<LandingPageKey, LandingPageVariant> = {
   home: {
-    title: "Punar Axis Therapy │ Ayurveda & physiotherapy in Sector 141, Noida",
+    title: "Punar Axis Therapy | Ayurveda & physiotherapy in Sector 141, Noida",
     description: "Punar Axis Therapy offers Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation.",
     robots: "index, follow",
     canonical: CLINIC_DETAILS.siteUrl,

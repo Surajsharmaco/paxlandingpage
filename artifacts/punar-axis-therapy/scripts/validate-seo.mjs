@@ -11,7 +11,7 @@ const pages = [
   {
     path: "index.html",
     url: `${siteUrl}/`,
-    title: "Punar Axis Therapy │ Ayurveda & physiotherapy in Sector 141, Noida",
+    title: "Punar Axis Therapy | Ayurveda & physiotherapy in Sector 141, Noida",
     description: "Punar Axis Therapy offers Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation.",
     robots: "index, follow",
   },
