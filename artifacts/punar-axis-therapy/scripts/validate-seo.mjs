@@ -11,7 +11,7 @@ const pages = [
   {
     path: "index.html",
     url: `${siteUrl}/`,
-    title: "Ayurveda physiotherapy in Sector 141, Noida",
+    title: "Punar Axis Therapy │ Ayurveda & physiotherapy in Sector 141, Noida",
     description: "Punar Axis Therapy offers Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation.",
     robots: "index, follow",
   },
@@ -86,7 +86,8 @@ async function checkPublicFiles() {
 async function checkPage(page) {
   const html = await readFile(resolve(distRoot, page.path), "utf8");
   assert(readAttribute(html, "title", "data-seo-marker") === null, `${page.path} contains an unexpected title marker`);
-  const title = html.match(/<title>([^<]+)<\/title>/i)?.[1] ?? null;
+  const decodeHtml = (value) => value?.replaceAll("&amp;", "&") ?? null;
+  const title = decodeHtml(html.match(/<title>([^<]+)<\/title>/i)?.[1]);
   assert(title === page.title, `${page.path} has the wrong title`);
   const descriptionMatch = html.match(/<meta\s+name="description"\s+content="([^"]*)"/i);
   assert(descriptionMatch?.[1] === page.description, `${page.path} has the wrong meta description`);
@@ -96,11 +97,11 @@ async function checkPage(page) {
   assert(canonical === page.url, `${page.path} has the wrong canonical URL`);
   const ogUrl = html.match(/<meta\s+property="og:url"\s+content="([^"]*)"/i)?.[1] ?? null;
   assert(ogUrl === page.url, `${page.path} has the wrong Open Graph URL`);
-  const ogTitle = html.match(/<meta\s+property="og:title"\s+content="([^"]*)"/i)?.[1] ?? null;
+  const ogTitle = decodeHtml(html.match(/<meta\s+property="og:title"\s+content="([^"]*)"/i)?.[1]);
   assert(ogTitle === page.title, `${page.path} has the wrong Open Graph title`);
   const ogDescription = html.match(/<meta\s+property="og:description"\s+content="([^"]*)"/i)?.[1] ?? null;
   assert(ogDescription === page.description, `${page.path} has the wrong Open Graph description`);
-  const twitterTitle = html.match(/<meta\s+name="twitter:title"\s+content="([^"]*)"/i)?.[1] ?? null;
+  const twitterTitle = decodeHtml(html.match(/<meta\s+name="twitter:title"\s+content="([^"]*)"/i)?.[1]);
   assert(twitterTitle === page.title, `${page.path} has the wrong Twitter title`);
   const twitterDescription = html.match(/<meta\s+name="twitter:description"\s+content="([^"]*)"/i)?.[1] ?? null;
   assert(twitterDescription === page.description, `${page.path} has the wrong Twitter description`);
