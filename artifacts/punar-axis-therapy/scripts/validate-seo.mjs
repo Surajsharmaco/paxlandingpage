@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 const projectRoot = resolve(new URL("..", import.meta.url).pathname);
 const publicRoot = resolve(projectRoot, "public");
 const distRoot = resolve(projectRoot, "dist/public");
-const siteUrl = "https://punaraxistrytherapy.in";
+const siteUrl = "https://punaraxistherapy.in";
 
 const pages = [
   {

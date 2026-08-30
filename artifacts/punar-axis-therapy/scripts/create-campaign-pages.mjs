@@ -38,7 +38,7 @@ function updateJsonLd(html, page, canonical) {
 }
 
 for (const [slug, page] of Object.entries(campaignPages)) {
-  const canonical = `https://punaraxistrytherapy.in/${slug}/`;
+  const canonical = `https://punaraxistherapy.in/${slug}/`;
   const html = homepage
     .replace(/<title>[^<]*<\/title>/, `<title>${page.title}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${page.description}$2`)

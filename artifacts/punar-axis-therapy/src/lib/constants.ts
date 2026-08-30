@@ -1,6 +1,6 @@
 export const CLINIC_DETAILS = {
   name: "Punar Axis Therapy",
-  siteUrl: "https://punaraxistrytherapy.in/",
+  siteUrl: "https://punaraxistherapy.in/",
   iconSrc: "/punar-axis-logo.webp",
   logoSrc: "/punar-axis-combined.webp",
   tagline: "Ancient wisdom. Modern revival.",

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://punaraxistrytherapy.in/sitemap.xml
+Sitemap: https://punaraxistherapy.in/sitemap.xml

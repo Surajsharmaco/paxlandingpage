@@ -21,16 +21,16 @@ Opening hours were deliberately omitted because they were not supplied. Latitude
 
 Public sitemap:
 
-- https://punaraxistrytherapy.in/sitemap.xml
+- https://punaraxistherapy.in/sitemap.xml
 
 Current indexable URL:
 
-- https://punaraxistrytherapy.in/
+- https://punaraxistherapy.in/
 
 Two campaign-only URLs are also available for paid traffic, but are intentionally noindexed and are not listed in the XML sitemap:
 
-- https://punaraxistrytherapy.in/physiotherapy/
-- https://punaraxistrytherapy.in/ayurveda/
+- https://punaraxistherapy.in/physiotherapy/
+- https://punaraxistherapy.in/ayurveda/
 
 No additional indexable service, condition, location or blog URLs were added because the current site does not yet contain enough verified, original content to justify separate organic pages. This avoids thin pages and doorway-page risk.
 
@@ -40,15 +40,15 @@ No additional indexable service, condition, location or blog URLs were added bec
 User-agent: *
 Allow: /
 
-Sitemap: https://punaraxistrytherapy.in/sitemap.xml
+Sitemap: https://punaraxistherapy.in/sitemap.xml
 ```
 
 ## 4. Final llms.txt
 
 Public files:
 
-- https://punaraxistrytherapy.in/llms.txt
-- https://punaraxistrytherapy.in/llm.txt
+- https://punaraxistherapy.in/llms.txt
+- https://punaraxistherapy.in/llm.txt
 
 Both files contain the verified business identity, the Ayurveda-first service hierarchy, location, phone, map link, Instagram profile and the main organic page. `llm.txt` is provided as a singular-name compatibility alias. The paid campaign variants are intentionally excluded from these AI-oriented discovery files.
 
@@ -56,9 +56,9 @@ Both files contain the verified business identity, the Ayurveda-first service hi
 
 | URL | Title | Meta description | H1 | Primary keyword | Secondary keywords | Canonical |
 | --- | --- | --- | --- | --- | --- | --- |
-| https://punaraxistrytherapy.in/ | Punar Axis Therapy \| Ayurveda Clinic in Sector 141, Noida | Punar Axis Therapy offers Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation. | Ayurveda, Physiotherapy & Rehab in Sector 141, Noida | Ayurveda clinic in Sector 141 Noida | physiotherapy clinic Sector 141, rehabilitation Sector 141, Ayurveda Noida, physiotherapy Noida | https://punaraxistrytherapy.in/ |
-| https://punaraxistrytherapy.in/physiotherapy/ | Punar Axis Therapy \| Physiotherapy in Sector 141, Noida | Punar Axis Therapy offers physiotherapy, Ayurveda and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation. | Physiotherapy, Ayurveda & Rehab in Sector 141, Noida | Physiotherapy in Sector 141 Noida | Ayurveda Noida, rehabilitation Sector 141 | https://punaraxistrytherapy.in/physiotherapy/ (noindex,follow) |
-| https://punaraxistrytherapy.in/ayurveda/ | Punar Axis Therapy \| Ayurveda Clinic in Sector 141, Noida | Punar Axis Therapy offers Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation. | Ayurveda, Physiotherapy & Rehab in Sector 141, Noida | Ayurveda clinic in Sector 141 Noida | physiotherapy clinic Sector 141, rehabilitation Sector 141 | https://punaraxistrytherapy.in/ayurveda/ (noindex,follow) |
+| https://punaraxistherapy.in/ | Punar Axis Therapy \| Ayurveda Clinic in Sector 141, Noida | Punar Axis Therapy offers Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation. | Ayurveda, Physiotherapy & Rehab in Sector 141, Noida | Ayurveda clinic in Sector 141 Noida | physiotherapy clinic Sector 141, rehabilitation Sector 141, Ayurveda Noida, physiotherapy Noida | https://punaraxistherapy.in/ |
+| https://punaraxistherapy.in/physiotherapy/ | Punar Axis Therapy \| Physiotherapy in Sector 141, Noida | Punar Axis Therapy offers physiotherapy, Ayurveda and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation. | Physiotherapy, Ayurveda & Rehab in Sector 141, Noida | Physiotherapy in Sector 141 Noida | Ayurveda Noida, rehabilitation Sector 141 | https://punaraxistherapy.in/physiotherapy/ (noindex,follow) |
+| https://punaraxistherapy.in/ayurveda/ | Punar Axis Therapy \| Ayurveda Clinic in Sector 141, Noida | Punar Axis Therapy offers Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida. Contact the clinic to plan a personalised consultation. | Ayurveda, Physiotherapy & Rehab in Sector 141, Noida | Ayurveda clinic in Sector 141 Noida | physiotherapy clinic Sector 141, rehabilitation Sector 141 | https://punaraxistherapy.in/ayurveda/ (noindex,follow) |
 
 Exactly one H1 is present. The visible heading uses “Rehab” for the compact campaign design; “Rehabilitation” remains in supporting copy, metadata, FAQ content and structured data for unambiguous search context.
 
@@ -163,7 +163,7 @@ Footer links reinforce the main section relationships.
 - [x] Business name matches: Punar Axis Therapy
 - [x] Address matches the supplied Google Business Profile address
 - [x] Phone matches the supplied clinic phone
-- [x] Website canonical is https://punaraxistrytherapy.in/
+- [x] Website canonical is https://punaraxistherapy.in/
 - [x] Official Instagram is connected
 - [x] Map link is present
 - [x] Confirmed service categories are aligned
@@ -199,8 +199,8 @@ The existing mobile-performance task should still be completed with a production
 
 ## 13. Search Console checklist
 
-- [ ] Verify https://punaraxistrytherapy.in/ in Google Search Console
-- [ ] Submit https://punaraxistrytherapy.in/sitemap.xml
+- [ ] Verify https://punaraxistherapy.in/ in Google Search Console
+- [ ] Submit https://punaraxistherapy.in/sitemap.xml
 - [ ] Inspect the homepage canonical
 - [ ] Request indexing after deployment
 - [ ] Review Page Indexing, Core Web Vitals and Mobile Usability reports
@@ -230,8 +230,8 @@ No legacy URLs were supplied, so no path redirects were added.
 
 Production requirements:
 
-- `http://punaraxistrytherapy.in/*` → `https://punaraxistrytherapy.in/*`
-- `https://www.punaraxistrytherapy.in/*` → `https://punaraxistrytherapy.in/*`
+- `http://punaraxistherapy.in/*` → `https://punaraxistherapy.in/*`
+- `https://www.punaraxistherapy.in/*` → `https://punaraxistherapy.in/*`
 
 These redirects must be configured and verified at the production hosting/domain layer.
 
@@ -480,7 +480,7 @@ Rehabilitation services at Punar Axis Therapy in Sector 141, Noida. Contact the 
 
 ### Profile actions
 
-- Use https://punaraxistrytherapy.in/ as the website URL
+- Use https://punaraxistherapy.in/ as the website URL
 - Use the homepage consultation anchor as an appointment destination only if Google accepts the URL with its fragment
 - Add verified opening hours when provided
 - Add the exact primary phone
@@ -527,7 +527,7 @@ Use the exact same NAP everywhere:
 Punar Axis Therapy
 First Floor, SH-38, Sector 141, Noida, Uttar Pradesh 201309
 +91 87965 20257
-https://punaraxistrytherapy.in/
+https://punaraxistherapy.in/
 ```
 
 ### Priority platforms
@@ -666,14 +666,14 @@ The current Google Fonts request remains a render-path dependency. Self-hosting 
 
 ## 36. URLs created
 
-- https://punaraxistrytherapy.in/sitemap.xml
-- https://punaraxistrytherapy.in/robots.txt
-- https://punaraxistrytherapy.in/llms.txt
-- https://punaraxistrytherapy.in/llm.txt
-- https://punaraxistrytherapy.in/site.webmanifest
+- https://punaraxistherapy.in/sitemap.xml
+- https://punaraxistherapy.in/robots.txt
+- https://punaraxistherapy.in/llms.txt
+- https://punaraxistherapy.in/llm.txt
+- https://punaraxistherapy.in/site.webmanifest
 
-- https://punaraxistrytherapy.in/physiotherapy/ (paid landing page, noindex)
-- https://punaraxistrytherapy.in/ayurveda/ (paid landing page, noindex)
+- https://punaraxistherapy.in/physiotherapy/ (paid landing page, noindex)
+- https://punaraxistherapy.in/ayurveda/ (paid landing page, noindex)
 
 No new indexable organic content URL was created.
 
