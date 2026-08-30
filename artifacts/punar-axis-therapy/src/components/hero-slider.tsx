@@ -153,11 +153,13 @@ export const HeroSlider = ({ page = "home" }: { page?: LandingPageKey }) => {
           <p className="hero-kicker"><span />Ancient healing. Modern revival.<span /></p>
           <h1 className="hero-heading">
             <span className="hero-heading__services">
-              <span className="hero-heading__service">{SERVICE_LABELS[primaryService]}</span>
+              <span className="hero-heading__service hero-heading__primary">{SERVICE_LABELS[primaryService]}</span>
               <span className="hero-heading__separator">,</span>
-              <span className="hero-heading__service"><em>{SERVICE_LABELS[secondaryService]}</em></span>
-              <span className="hero-heading__amp">&amp;</span>
-              <span className="hero-heading__service"><em>{SERVICE_LABELS[tertiaryService]}</em></span>
+              <span className="hero-heading__secondary">
+                <span className="hero-heading__service"><em>{SERVICE_LABELS[secondaryService]}</em></span>
+                <span className="hero-heading__amp">&amp;</span>
+                <span className="hero-heading__service"><em>{SERVICE_LABELS[tertiaryService]}</em></span>
+              </span>
             </span>
             <span className="hero-heading__location">in Sector 141, <em>Noida.</em></span>
           </h1>
