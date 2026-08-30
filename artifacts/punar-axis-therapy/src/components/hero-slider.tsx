@@ -101,7 +101,7 @@ export const HeroSlider = ({ page = "home" }: { page?: LandingPageKey }) => {
 
   useEffect(() => {
     if (isPaused) return;
-    const timer = window.setInterval(next, 5000);
+    const timer = window.setInterval(next, 4500);
     return () => window.clearInterval(timer);
   }, [isPaused, next]);
 
