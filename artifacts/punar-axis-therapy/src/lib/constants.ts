@@ -1,0 +1,57 @@
+export const CLINIC_DETAILS = {
+  name: "Punar Axis Therapy",
+  siteUrl: "https://punaraxistrytherapy.in/",
+  iconSrc: "/punar-axis-logo.webp",
+  logoSrc: "/punar-axis-combined.webp",
+  tagline: "Ancient wisdom. Modern revival.",
+  description: "Ayurveda-first care with physiotherapy and rehabilitation services in Sector 141, Noida.",
+  instagramUrl: "https://www.instagram.com/punaraxistherapy/",
+  address: "First Floor, SH-38, Sector 141, Noida, Uttar Pradesh 201309",
+  phoneDisplay: "8796520257",
+  phoneUri: "tel:+918796520257",
+  whatsappUrl: "https://wa.me/918796520257?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20the%20treatments%20and%20book%20a%20consultation%20at%20Punar%20Axis%20Therapy.",
+  googleMapsUrl: "https://www.google.com/maps?sca_esv=d6722cbcb0a4d0ef&rlz=1C1RXQR_enIN1197IN1197&sxsrf=APpeQnuTXKxoqGRWaEi2h1qT1e5YzNbNDQ:1788035453399&kgmid=/g/11z805w9px&shem=dlvs1,epsd1,ltae,rimspwouoe&shndl=30&kgs=23970a6ffe8f968d&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KcldtZxg6Qw5MWo91lu-6MpN&daddr=first+floor,+SH-38,+Sector+141,+Noida,+Uttar+Pradesh+201309",
+};
+
+const responsiveHero = (number: string, label: string) => ({
+  type: "image" as const,
+  src: `/punar-axis-hero-${number}-1280.webp`,
+  srcSet: `/punar-axis-hero-${number}-640.webp 640w, /punar-axis-hero-${number}-1280.webp 1280w`,
+  sizes: "(max-width: 767px) calc(100vw - 40px), calc(100vw - 64px)",
+  label,
+});
+
+export const clinicMedia = {
+  hero: [
+    responsiveHero("01", "Punar Axis Therapy reception lounge"),
+    responsiveHero("02", "Punar Axis Therapy physiotherapy equipment room"),
+    responsiveHero("03", "Punar Axis Therapy clinic room with therapy equipment"),
+    responsiveHero("04", "Punar Axis Therapy therapy room"),
+    responsiveHero("05", "Punar Axis Therapy Ayurveda room with traditional therapy equipment"),
+    responsiveHero("06", "Punar Axis Therapy physiotherapy room"),
+    responsiveHero("07", "Punar Axis Therapy clinic room with wooden therapy cabinet"),
+    responsiveHero("08", "Punar Axis Therapy reception area"),
+    responsiveHero("09", "Punar Axis Therapy care team"),
+  ],
+  gallery: [
+    { src: "/punar-axis-gallery-steam-room.jpg", title: "Therapy room", label: "Punar Axis Therapy room with traditional therapy equipment" },
+    { src: "/punar-axis-gallery-panchakarma-room.jpg", title: "Ayurveda room", label: "Punar Axis Therapy Ayurveda room interior" },
+    { src: "/punar-axis-gallery-courtyard.jpg", title: "Clinic courtyard", label: "Punar Axis Therapy courtyard walkway" },
+    { src: "/punar-axis-gallery-courtyard-copy.jpg", title: "Outdoor walkway", label: "Punar Axis Therapy outdoor walkway" },
+    { src: "/punar-axis-gallery-outdoor-corridor.jpg", title: "Clinic passage", label: "Punar Axis Therapy clinic passage" },
+    { src: "/punar-axis-gallery-behind-scenes-1.jpg", title: "Behind the scenes", label: "Behind the scenes clinic photo" },
+    { src: "/punar-axis-gallery-device-1.jpg", title: "Equipment detail", label: "Punar Axis Therapy equipment detail" },
+    { src: "/punar-axis-gallery-behind-scenes-2.jpg", title: "Behind the scenes", label: "Behind the scenes clinic photo" },
+    { src: "/punar-axis-gallery-device-2.jpg", title: "Equipment detail", label: "Punar Axis Therapy equipment detail" },
+    { src: "/punar-axis-gallery-behind-scenes-3.jpg", title: "Behind the scenes", label: "Behind the scenes clinic photo" },
+    { src: "/punar-axis-gallery-device-3.jpg", title: "Equipment detail", label: "Punar Axis Therapy equipment detail" },
+    { src: "/punar-axis-gallery-behind-scenes-4.jpg", title: "Behind the scenes", label: "Behind the scenes clinic photo" },
+    { src: "/punar-axis-gallery-device-4.jpg", title: "Equipment detail", label: "Punar Axis Therapy equipment detail" },
+    { src: "/punar-axis-gallery-clinic-room-1.jpg", title: "Clinic room", label: "Punar Axis Therapy clinic room" },
+    { src: "/punar-axis-gallery-clinic-room-2.jpg", title: "Clinic room", label: "Punar Axis Therapy clinic room" },
+    { src: "/punar-axis-gallery-reception-wide-2.jpg", title: "Reception", label: "Punar Axis Therapy reception area" },
+    { src: "/punar-axis-gallery-reception-detail-2.jpg", title: "Reception detail", label: "Punar Axis Therapy reception detail" },
+    { src: "/punar-axis-gallery-clinic-room-3.jpg", title: "Clinic room", label: "Punar Axis Therapy clinic room" },
+  ],
+  offer: { type: "image", src: "/founding-membership-hamper.webp", label: "Founding membership wellness hamper with Ayurvedic products" },
+};

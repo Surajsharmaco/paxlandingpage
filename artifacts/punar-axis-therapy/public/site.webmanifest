@@ -1,0 +1,19 @@
+{
+  "name": "Punar Axis Therapy",
+  "short_name": "Punar Axis",
+  "description": "Ayurveda, physiotherapy and rehabilitation services in Sector 141, Noida.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FCFBF7",
+  "theme_color": "#063B28",
+  "icons": [
+    {
+      "src": "/punar-axis-logo.webp",
+      "sizes": "512x442",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}

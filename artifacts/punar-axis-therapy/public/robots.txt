@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://punaraxistrytherapy.in/sitemap.xml

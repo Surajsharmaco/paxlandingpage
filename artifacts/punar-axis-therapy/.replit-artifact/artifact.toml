@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Punar Axis Therapy"
+description = "A premium conversion-focused landing page for Punar Axis Therapy in Sector 141, Noida, helping visitors discover physiotherapy, Ayurveda, rehabilitation and wellness care, then contact the clinic by WhatsApp, phone, directions or consultation form."
+version = "1.0.0"
+id = "artifacts/punar-axis-therapy"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24899
+
+[services.development]
+run = "pnpm --filter @workspace/punar-axis-therapy run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/punar-axis-therapy", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/punar-axis-therapy/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24899"
+BASE_PATH = "/"
