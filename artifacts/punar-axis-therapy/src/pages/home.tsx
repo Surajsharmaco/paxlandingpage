@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ComponentType } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import {
   Activity,
   ArrowRight,
@@ -284,17 +284,37 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
       if (!scroller) return;
 
       const card = scroller.querySelector<HTMLElement>(".testimonial-card");
-      const step = (card?.getBoundingClientRect().width ?? 360) + 16;
-      const isAtEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 8;
+      const gap = Number.parseFloat(window.getComputedStyle(scroller).columnGap || "16") || 16;
+      const step = (card?.getBoundingClientRect().width ?? scroller.clientWidth * .86) + gap;
+      const maxScrollLeft = Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+      if (maxScrollLeft === 0) return;
+      const nextLeft = scroller.scrollLeft + step;
+      const targetLeft = nextLeft >= maxScrollLeft - 4 ? 0 : Math.min(nextLeft, maxScrollLeft);
 
       scroller.scrollTo({
-        left: isAtEnd ? 0 : scroller.scrollLeft + step,
+        left: targetLeft,
         behavior: "smooth",
       });
     }, 4500);
 
     return () => window.clearInterval(interval);
   }, [testimonialsPaused]);
+
+  const moveTestimonials = useCallback((direction: "next" | "previous") => {
+    const scroller = testimonialScroller.current;
+    if (!scroller) return;
+
+    const card = scroller.querySelector<HTMLElement>(".testimonial-card");
+    const gap = Number.parseFloat(window.getComputedStyle(scroller).columnGap || "16") || 16;
+    const step = (card?.getBoundingClientRect().width ?? scroller.clientWidth * .86) + gap;
+    const maxScrollLeft = Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+    const nextLeft = direction === "next" ? scroller.scrollLeft + step : scroller.scrollLeft - step;
+    const targetLeft = direction === "next"
+      ? (nextLeft >= maxScrollLeft - 4 ? 0 : Math.min(nextLeft, maxScrollLeft))
+      : (nextLeft <= 4 ? maxScrollLeft : Math.max(nextLeft, 0));
+
+    scroller.scrollTo({ left: targetLeft, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="min-h-screen overflow-x-clip bg-background text-foreground">
@@ -364,8 +384,10 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
               onMouseLeave={() => setTestimonialsPaused(false)}
               onFocus={() => setTestimonialsPaused(true)}
               onBlur={() => setTestimonialsPaused(false)}
+              onTouchStart={() => setTestimonialsPaused(true)}
+              onTouchEnd={() => setTestimonialsPaused(false)}
             >
-              <button type="button" className="testimonial-control testimonial-control--prev" onClick={() => testimonialScroller.current?.scrollBy({ left: -360, behavior: "smooth" })} aria-label="Previous patient story"><ChevronLeft className="h-4 w-4" /></button>
+              <button type="button" className="testimonial-control testimonial-control--prev" onClick={() => moveTestimonials("previous")} aria-label="Previous patient story"><ChevronLeft className="h-4 w-4" /></button>
               <div ref={testimonialScroller} className="testimonial-track flex snap-x gap-4 overflow-x-auto pb-4">
                 {testimonials.map((testimonial) => (
                   <article key={testimonial.name} className="testimonial-card min-w-[86%] snap-center rounded-2xl border border-[#063b28]/10 bg-white p-5 sm:min-w-[58%] md:p-6">
@@ -380,7 +402,7 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
                   </article>
                 ))}
               </div>
-              <button type="button" className="testimonial-control testimonial-control--next" onClick={() => testimonialScroller.current?.scrollBy({ left: 360, behavior: "smooth" })} aria-label="Next patient story"><ChevronRight className="h-4 w-4" /></button>
+              <button type="button" className="testimonial-control testimonial-control--next" onClick={() => moveTestimonials("next")} aria-label="Next patient story"><ChevronRight className="h-4 w-4" /></button>
               <div className="testimonial-dots" aria-hidden="true">
                 {testimonials.map((testimonial, index) => <span key={testimonial.name} className={index === 0 ? "is-active" : undefined} />)}
               </div>

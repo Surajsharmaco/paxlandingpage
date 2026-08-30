@@ -879,6 +879,7 @@
 .testimonial-track {
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
 }
 
 .testimonial-track::-webkit-scrollbar {

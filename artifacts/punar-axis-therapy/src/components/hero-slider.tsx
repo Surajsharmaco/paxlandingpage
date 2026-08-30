@@ -65,51 +65,43 @@ export const HeroSlider = ({ page = "home" }: { page?: LandingPageKey }) => {
   const [isAnimating, setIsAnimating] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const touchStart = useRef<number | null>(null);
+  const isTransitioning = useRef(false);
   const slideCount = clinicMedia.hero.length;
-  const [loadedIndexes, setLoadedIndexes] = useState<Set<number>>(
-    () => new Set([slideCount - 1, 0, 1 % slideCount]),
-  );
   const trackSlides = [
     clinicMedia.hero[slideCount - 1],
     ...clinicMedia.hero,
     clinicMedia.hero[0],
   ];
 
-  const ensureSlidesLoaded = useCallback((indexes: number[]) => {
-    setLoadedIndexes((current) => {
-      const next = new Set(current);
-      indexes.forEach((index) => next.add((index + slideCount) % slideCount));
-      return next.size === current.size ? current : next;
-    });
-  }, [slideCount]);
-
   const goTo = useCallback((index: number) => {
+    if (isTransitioning.current) return;
     const nextIndex = (index + slideCount) % slideCount;
-    ensureSlidesLoaded([nextIndex - 1, nextIndex, nextIndex + 1]);
+    if (nextIndex === activeIndex) return;
+    isTransitioning.current = true;
     setActiveIndex(nextIndex);
     setTrackIndex(nextIndex + 1);
     setIsAnimating(true);
-  }, [ensureSlidesLoaded, slideCount]);
+  }, [activeIndex, slideCount]);
 
   const next = useCallback(() => {
-    const nextIndex = (activeIndex + 1) % slideCount;
-    ensureSlidesLoaded([nextIndex - 1, nextIndex, nextIndex + 1]);
-    setActiveIndex(nextIndex);
-    setTrackIndex((current) => current + 1);
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
+    setActiveIndex((current) => (current + 1) % slideCount);
+    setTrackIndex((current) => (current >= slideCount + 1 ? 2 : current + 1));
     setIsAnimating(true);
-  }, [activeIndex, ensureSlidesLoaded, slideCount]);
+  }, [slideCount]);
 
   const previous = useCallback(() => {
-    const previousIndex = (activeIndex - 1 + slideCount) % slideCount;
-    ensureSlidesLoaded([previousIndex - 1, previousIndex, previousIndex + 1]);
-    setActiveIndex(previousIndex);
-    setTrackIndex((current) => current - 1);
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
+    setActiveIndex((current) => (current - 1 + slideCount) % slideCount);
+    setTrackIndex((current) => (current <= 0 ? slideCount - 1 : current - 1));
     setIsAnimating(true);
-  }, [activeIndex, ensureSlidesLoaded, slideCount]);
+  }, [slideCount]);
 
   useEffect(() => {
     if (isPaused) return;
-    const timer = window.setInterval(next, 6500);
+    const timer = window.setInterval(next, 5000);
     return () => window.clearInterval(timer);
   }, [isPaused, next]);
 
@@ -130,11 +122,19 @@ export const HeroSlider = ({ page = "home" }: { page?: LandingPageKey }) => {
     if (trackIndex === 0) {
       setIsAnimating(false);
       setTrackIndex(slideCount);
-      window.requestAnimationFrame(() => setIsAnimating(true));
+      window.requestAnimationFrame(() => {
+        setIsAnimating(true);
+        isTransitioning.current = false;
+      });
     } else if (trackIndex === slideCount + 1) {
       setIsAnimating(false);
       setTrackIndex(1);
-      window.requestAnimationFrame(() => setIsAnimating(true));
+      window.requestAnimationFrame(() => {
+        setIsAnimating(true);
+        isTransitioning.current = false;
+      });
+    } else {
+      isTransitioning.current = false;
     }
   };
 
@@ -185,7 +185,6 @@ export const HeroSlider = ({ page = "home" }: { page?: LandingPageKey }) => {
               const mediaIndex = (index - 1 + slideCount) % slideCount;
               const slide = localSlides[mediaIndex];
               const isCurrentSlide = index === trackIndex;
-              const shouldLoad = loadedIndexes.has(mediaIndex);
               return (
                 <div
                   key={`${media.src}-${index}`}
@@ -197,10 +196,10 @@ export const HeroSlider = ({ page = "home" }: { page?: LandingPageKey }) => {
                   aria-label={slide.mediaLabel}
                 >
                   <img
-                    src={shouldLoad ? media.src : undefined}
-                    srcSet={shouldLoad ? media.srcSet : undefined}
+                    src={media.src}
+                    srcSet={media.srcSet}
                     sizes={media.sizes}
-                    loading={isCurrentSlide ? "eager" : "lazy"}
+                    loading="eager"
                     decoding="async"
                     fetchPriority={isCurrentSlide ? "high" : "auto"}
                     alt={media.label}
