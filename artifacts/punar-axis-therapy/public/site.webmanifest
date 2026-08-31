@@ -6,14 +6,20 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FCFBF7",
+  "background_color": "#000000",
   "theme_color": "#063B28",
   "icons": [
     {
-      "src": "/punar-axis-logo.webp",
-      "sizes": "512x442",
-      "type": "image/webp",
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
