@@ -6,6 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import Home from '@/pages/home';
 import { AyurvedaCampaignPage, PhysiotherapyCampaignPage } from '@/pages/campaign-page';
+import { AdminPortal, TeamPortal } from '@/pages/portal';
 import {
   Route,
   Switch,
@@ -24,6 +25,11 @@ function Router() {
         <Route path="/physiotherapy" component={PhysiotherapyCampaignPage} />
         <Route path="/ayurveda/" component={AyurvedaCampaignPage} />
         <Route path="/ayurveda" component={AyurvedaCampaignPage} />
+        <Route path="/admin/login" component={AdminPortal} />
+        <Route path="/admin" component={AdminPortal} />
+        <Route path="/admin/:section" component={AdminPortal} />
+        <Route path="/team/login" component={TeamPortal} />
+        <Route path="/team" component={TeamPortal} />
         <Route component={NotFound} />
       </Switch>
     </RoutedErrorBoundary>
