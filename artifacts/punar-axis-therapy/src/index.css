@@ -1013,7 +1013,14 @@
   background: rgba(252,251,247,.9);
   box-shadow: 0 16px 42px rgba(2,43,29,.2), 0 2px 8px rgba(2,43,29,.1);
   backdrop-filter: blur(18px);
+  transform: translate(-50%, calc(100% + 24px));
+  transition: transform .3s ease, opacity .3s ease;
+  opacity: 0;
+}
+
+.mobile-actions--visible {
   transform: translateX(-50%);
+  opacity: 1;
 }
 
 .mobile-actions a {
@@ -1256,7 +1263,11 @@
     bottom: 20px;
     left: auto;
     width: min(100% - 48px, 420px);
-    transform: none;
+    transform: translateY(calc(100% + 24px));
+  }
+
+  .mobile-actions--visible {
+    transform: translateY(0);
   }
 }
 

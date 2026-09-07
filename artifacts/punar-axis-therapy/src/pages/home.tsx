@@ -196,8 +196,10 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
   const orderedCareOptions = pageConfig.serviceOrder.flatMap((key) => careOptions.filter((option) => option.key === key));
   const orderedServices = pageConfig.serviceOrder.flatMap((key) => services.filter((service) => service.key === key));
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showStickyActions, setShowStickyActions] = useState(false);
   const [testimonialsPaused, setTestimonialsPaused] = useState(false);
   const testimonialScroller = useRef<HTMLDivElement>(null);
+  const heroActionsRef = useRef<HTMLDivElement>(null);
   const directionsHref = CLINIC_DETAILS.googleMapsUrl === "PASTE_GOOGLE_MAPS_URL_HERE" ? "#location" : CLINIC_DETAILS.googleMapsUrl;
 
   useEffect(() => {
@@ -267,6 +269,19 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
       if (jsonLdScript && originalJsonLd !== null) jsonLdScript.textContent = originalJsonLd;
     };
   }, [page, pageConfig]);
+
+  useEffect(() => {
+    const target = heroActionsRef.current;
+    if (!target || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowStickyActions(!entry.isIntersecting),
+      { threshold: 0.1, rootMargin: "-72px 0px 0px 0px" },
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (testimonialsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -347,7 +362,7 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
 
         <section className="relative z-20 bg-[#fcfbf7] pb-2 pt-1 md:pb-1 md:pt-0" aria-label="Contact Punar Axis Therapy">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="action-grid grid grid-cols-3 gap-2 md:overflow-hidden md:rounded-2xl md:border md:border-[#063b28]/10 md:bg-white md:p-1 md:shadow-[0_18px_50px_rgba(2,43,29,0.12)]">
+            <div ref={heroActionsRef} className="action-grid grid grid-cols-3 gap-2 md:overflow-hidden md:rounded-2xl md:border md:border-[#063b28]/10 md:bg-white md:p-1 md:shadow-[0_18px_50px_rgba(2,43,29,0.12)]">
               {actionItems.map((item, index) => {
                 const ActionIcon = item.icon;
                 return (
@@ -572,7 +587,7 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
         <div className="container mx-auto mt-10 border-t border-white/8 px-5 pt-6 text-xs text-white/30 md:px-8">© {new Date().getFullYear()} <span className="text-[#d49a25]">Punar Axis Therapy</span>. All rights reserved.</div>
       </footer>
 
-      <nav className="mobile-actions" aria-label="Quick clinic actions">
+      <nav className={`mobile-actions ${showStickyActions ? "mobile-actions--visible" : ""}`} aria-label="Quick clinic actions" aria-hidden={!showStickyActions}>
         <a href={CLINIC_DETAILS.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Get in touch with Punar Axis Therapy on WhatsApp">
           <MessageCircle className="h-[17px] w-[17px]" aria-hidden />
           <span>WhatsApp</span>
