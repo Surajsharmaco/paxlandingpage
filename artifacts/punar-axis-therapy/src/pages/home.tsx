@@ -196,7 +196,6 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
   const orderedCareOptions = pageConfig.serviceOrder.flatMap((key) => careOptions.filter((option) => option.key === key));
   const orderedServices = pageConfig.serviceOrder.flatMap((key) => services.filter((service) => service.key === key));
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showStickyActions, setShowStickyActions] = useState(false);
   const [testimonialsPaused, setTestimonialsPaused] = useState(false);
   const testimonialScroller = useRef<HTMLDivElement>(null);
   const directionsHref = CLINIC_DETAILS.googleMapsUrl === "PASTE_GOOGLE_MAPS_URL_HERE" ? "#location" : CLINIC_DETAILS.googleMapsUrl;
@@ -268,13 +267,6 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
       if (jsonLdScript && originalJsonLd !== null) jsonLdScript.textContent = originalJsonLd;
     };
   }, [page, pageConfig]);
-
-  useEffect(() => {
-    const handleScroll = () => setShowStickyActions(window.scrollY > 620);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     if (testimonialsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -580,11 +572,20 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
         <div className="container mx-auto mt-10 border-t border-white/8 px-5 pt-6 text-xs text-white/30 md:px-8">© {new Date().getFullYear()} <span className="text-[#d49a25]">Punar Axis Therapy</span>. All rights reserved.</div>
       </footer>
 
-      <div className={`mobile-actions ${showStickyActions ? "mobile-actions--visible" : ""}`} aria-hidden={!showStickyActions}>
-        <a href={CLINIC_DETAILS.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><MessageCircle className="h-5 w-5 text-[#25D366]" /><span>WhatsApp</span></a>
-        <a href={directionsHref} aria-label="View clinic location on map"><MapPin className="h-5 w-5 text-[#d49a25]" /><span>Location</span></a>
-        <a href={CLINIC_DETAILS.phoneUri} aria-label="Call Punar Axis Therapy"><Phone className="h-5 w-5 text-[#063b28]" /><span>Call</span></a>
-      </div>
+      <nav className="mobile-actions" aria-label="Quick clinic actions">
+        <a href={CLINIC_DETAILS.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Get in touch with Punar Axis Therapy on WhatsApp">
+          <MessageCircle className="h-[17px] w-[17px]" aria-hidden />
+          <span>WhatsApp</span>
+        </a>
+        <a href={directionsHref} target={directionsHref.startsWith("http") ? "_blank" : undefined} rel={directionsHref.startsWith("http") ? "noopener noreferrer" : undefined} aria-label="Get directions to Punar Axis Therapy">
+          <MapPin className="h-[17px] w-[17px]" aria-hidden />
+          <span>Get Direction</span>
+        </a>
+        <a href={CLINIC_DETAILS.phoneUri} aria-label="Call Punar Axis Therapy now">
+          <Phone className="h-[17px] w-[17px]" aria-hidden />
+          <span>Call Now</span>
+        </a>
+      </nav>
     </div>
   );
 }
