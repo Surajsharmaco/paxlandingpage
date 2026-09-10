@@ -2529,3 +2529,117 @@
   .employee-calendar__detail { grid-template-columns: 1fr; }
   .employee-calendar__detail-times { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Desktop composition for the Ayurveda landing page */
+@media (min-width: 1100px) {
+  .ayurveda-single-panel > .container {
+    max-width: 1360px;
+    padding: 112px 44px 72px;
+  }
+
+  .ayurveda-single-panel__intro {
+    max-width: 1160px;
+  }
+
+  .ayurveda-single-panel__heading {
+    font-size: clamp(3.6rem, 5vw, 5.25rem);
+    line-height: .94;
+  }
+
+  .ayurveda-single-panel__location {
+    margin-top: 22px;
+  }
+
+  .ayurveda-benefits {
+    max-width: 920px;
+    margin-top: 32px;
+  }
+
+  .ayurveda-benefits span {
+    min-height: 72px;
+    gap: 10px;
+    font-size: .72rem;
+  }
+
+  .ayurveda-offerings {
+    max-width: 1240px;
+    margin-top: 34px;
+    border-radius: 24px;
+    box-shadow: 0 22px 60px rgba(2, 43, 29, .08);
+  }
+
+  .ayurveda-offerings__layout {
+    display: block;
+  }
+
+  .ayurveda-conditions-block {
+    border-right: 0;
+    border-bottom: 1px solid rgba(6, 59, 40, .08);
+    padding: 38px 36px 40px;
+  }
+
+  .ayurveda-conditions-block h2 {
+    margin-bottom: 20px;
+    font-size: 1.65rem;
+  }
+
+  .ayurveda-conditions-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 0;
+  }
+
+  .ayurveda-condition-card {
+    grid-template-columns: 78px minmax(0, 1fr);
+    min-height: 82px;
+    border-radius: 14px;
+  }
+
+  .ayurveda-condition-card img {
+    width: 78px;
+    min-height: 82px;
+  }
+
+  .ayurveda-condition-card h3 {
+    padding: 10px 12px;
+    font-size: .88rem;
+  }
+
+  .ayurveda-therapies-block {
+    padding: 38px 36px 42px;
+  }
+
+  .ayurveda-therapies-header {
+    margin-bottom: 20px;
+  }
+
+  .ayurveda-therapies-header h2 {
+    font-size: 1.65rem;
+  }
+
+  .ayurveda-therapies-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .ayurveda-therapy-card__image {
+    aspect-ratio: 1.28;
+  }
+
+  .ayurveda-therapy-card__content {
+    padding: 12px 14px 15px;
+  }
+
+  .ayurveda-therapy-card__content h3 {
+    font-size: .92rem;
+  }
+
+  .ayurveda-more-card--therapy {
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .mobile-actions {
+    display: none;
+  }
+}
