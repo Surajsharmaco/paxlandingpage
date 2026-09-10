@@ -20,7 +20,7 @@ import {
   Tag,
   X,
 } from "lucide-react";
-import { HeroSlider } from "@/components/hero-slider";
+import { AyurvedaSinglePanel, HeroSlider } from "@/components/hero-slider";
 import { ConsultationForm } from "@/components/consultation-form";
 import { CLINIC_DETAILS, clinicMedia } from "@/lib/constants";
 import { LANDING_PAGE_VARIANTS, type LandingPageKey } from "@/lib/page-variants";
@@ -271,6 +271,17 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
   }, [page, pageConfig]);
 
   useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (isMobile) {
+      const revealOnFirstScroll = () => {
+        setShowStickyActions(true);
+        window.removeEventListener("scroll", revealOnFirstScroll);
+      };
+
+      window.addEventListener("scroll", revealOnFirstScroll, { passive: true });
+      return () => window.removeEventListener("scroll", revealOnFirstScroll);
+    }
+
     const target = heroActionsRef.current;
     if (!target || typeof IntersectionObserver === "undefined") return;
 
@@ -334,7 +345,7 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
             <a href="#consultation" className="rounded-md bg-[#bd7f0d] px-5 py-3 text-[0.66rem] font-bold text-white transition-colors hover:bg-[#d49a25]">Book Appointment</a>
           </div>
           <div className="flex items-center gap-2 md:hidden">
-            <a href={CLINIC_DETAILS.phoneUri} className="grid h-11 w-11 place-items-center rounded-full border border-white/15" aria-label="Call Punar Axis Therapy"><Phone className="h-5 w-5" /></a>
+            <a href={CLINIC_DETAILS.phoneUri} className="header-call-pulse grid h-11 w-11 place-items-center rounded-full" aria-label="Call Punar Axis Therapy now"><Phone className="h-5 w-5" /></a>
             <button onClick={() => setMenuOpen((open) => !open)} className="grid h-11 w-11 place-items-center rounded-full border border-white/15" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen}>
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -358,7 +369,9 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
       </header>
 
       <main id="home">
-        <section aria-label="Introduction"><HeroSlider page={page} /></section>
+        <section aria-label="Introduction">
+          {page === "ayurveda" ? <AyurvedaSinglePanel /> : <HeroSlider page={page} />}
+        </section>
 
         <section className="relative z-20 bg-[#fcfbf7] pb-2 pt-1 md:pb-1 md:pt-0" aria-label="Contact Punar Axis Therapy">
           <div className="container mx-auto px-4 md:px-8">
@@ -397,9 +410,9 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
               <button type="button" className="testimonial-control testimonial-control--prev" onClick={() => moveTestimonials("previous")} aria-label="Previous patient story"><ChevronLeft className="h-4 w-4" /></button>
               <div ref={testimonialScroller} className="testimonial-track flex snap-x gap-4 overflow-x-auto pb-4">
                 {testimonials.map((testimonial) => (
-                  <article key={testimonial.name} className="testimonial-card min-w-[86%] snap-center rounded-2xl border border-[#063b28]/10 bg-white p-5 sm:min-w-[58%] md:p-6">
+                  <article key={testimonial.name} className="testimonial-card min-w-[86%] snap-center rounded-2xl border border-[#063b28]/10 bg-white p-4 sm:min-w-[58%] sm:p-5 md:p-6">
                     <p className="text-sm leading-6 text-[#3f4d45]">“{testimonial.copy}”</p>
-                    <div className="testimonial-card__footer mt-5 border-t border-[#063b28]/10 pt-4">
+                    <div className="testimonial-card__footer mt-4 border-t border-[#063b28]/10 pt-3">
                       <div>
                         <p className="text-sm font-semibold text-[#17231e]">{testimonial.name}</p>
                         <span className="mt-1 flex gap-0.5 text-[#d49a25]" aria-label="Five star rating">★★★★★</span>
@@ -423,12 +436,12 @@ export default function Home({ page = "home" }: { page?: LandingPageKey }) {
               <div className="relative z-10 flex h-full flex-col">
                 <span className="w-fit rounded-full border border-[#e4bd68]/35 bg-white/5 px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#e4bd68]">Launch offer</span>
                 <div className="offer-copy my-auto py-12">
-                  <p className="offer-title font-serif text-5xl leading-[0.98] text-white md:text-6xl">Get Free Hampers with Founding Memberships.</p>
-                  <p className="offer-description mt-5 text-lg text-white/68">Exclusive wellness hampers for our founding members.</p>
+                  <p className="offer-title font-serif text-5xl leading-[0.98] text-white md:text-6xl">Get Free Hampers with Membership.</p>
+                  <p className="offer-description mt-5 text-lg text-white/68">Exclusive wellness hampers for our members.</p>
                   <p className="offer-limit mt-4 text-sm font-bold uppercase text-[#e4bd68]">Limited period only.</p>
                 </div>
-                <div className="offer-benefits" aria-label="Founding membership benefits">
-                  <span><Crown className="h-5 w-5 text-[#e4bd68]" aria-hidden /><strong>Founding</strong><small>Member benefits</small></span>
+                <div className="offer-benefits" aria-label="Membership benefits">
+                  <span><Crown className="h-5 w-5 text-[#e4bd68]" aria-hidden /><strong>Membership</strong><small>Member benefits</small></span>
                   <span><Sparkles className="h-5 w-5 text-[#e4bd68]" aria-hidden /><strong>Premium</strong><small>Wellness hampers</small></span>
                   <span><BadgeCheck className="h-5 w-5 text-[#e4bd68]" aria-hidden /><strong>Priority</strong><small>Bookings</small></span>
                   <span><Tag className="h-5 w-5 text-[#e4bd68]" aria-hidden /><strong>Special</strong><small>Discounts</small></span>

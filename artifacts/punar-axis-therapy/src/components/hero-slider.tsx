@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Activity, ChevronLeft, ChevronRight, HeartHandshake, Leaf, Pause, Play } from "lucide-react";
+import { Activity, ChevronLeft, ChevronRight, ClipboardCheck, HeartHandshake, Leaf, MapPin, Pause, Play, Plus, Stethoscope } from "lucide-react";
 import { clinicMedia } from "@/lib/constants";
 import { LANDING_PAGE_VARIANTS, SERVICE_LABELS, type LandingPageKey, type ServiceKey } from "@/lib/page-variants";
 
@@ -56,6 +56,148 @@ const serviceIcons: Record<ServiceKey, typeof Leaf> = {
   physiotherapy: Activity,
   rehabilitation: HeartHandshake,
 };
+
+const ayurvedaBenefits = [
+  { label: "Doctor-Guided Care", icon: Stethoscope },
+  { label: "Personalized Treatment", icon: ClipboardCheck },
+  { label: "Holistic Pain Support", icon: HeartHandshake },
+];
+
+const ayurvedaTherapies = [
+  {
+    label: "Shirodhara",
+    description: "Calms the mind",
+    image: "/ayurveda-therapy-shirodhara.webp",
+  },
+  {
+    label: "Abhyanga",
+    description: "Relaxes muscles",
+    image: "/ayurveda-therapy-abhyanga.webp",
+  },
+  {
+    label: "Kati Basti",
+    description: "Soothes back pain",
+    image: "/ayurveda-therapy-kati-basti.webp",
+  },
+  {
+    label: "Swedana",
+    description: "Detoxifies the body",
+    image: "/ayurveda-therapy-swedana.webp",
+  },
+  {
+    label: "Panchakarma",
+    description: "Traditional cleansing care",
+    image: "/ayurveda-therapy-panchakarma.webp",
+  },
+  {
+    label: "Nasya",
+    description: "Traditional nasal therapy",
+    image: "/clinic-ayurveda.jpg",
+  },
+  {
+    label: "Potli Therapy",
+    description: "Warm herbal compress",
+    image: "/ayurveda-therapy-potli.webp",
+  },
+  {
+    label: "Ayurvedic Steam",
+    description: "Herbal steam therapy",
+    image: "/ayurveda-therapy-steam.webp",
+  },
+];
+
+const ayurvedaConcerns = [
+  { label: "Neck Pain", image: "/ayurveda-concern-neck-pain.webp" },
+  { label: "Shoulder Pain", image: "/ayurveda-concern-shoulder-pain.webp" },
+  { label: "Back Pain", image: "/ayurveda-concern-back-pain.webp" },
+  { label: "Knee Pain", image: "/ayurveda-concern-knee-pain.webp" },
+  { label: "Elbow Pain", image: "/ayurveda-concern-elbow-pain.webp" },
+  { label: "Hip Pain", image: "/ayurveda-concern-hip-pain.webp" },
+  { label: "Headache & Migraine", image: "/ayurveda-concern-headache-migraine.webp" },
+  { label: "Digestive Issues", image: "/ayurveda-concern-digestive-issues.webp" },
+];
+
+export const AyurvedaSinglePanel = () => (
+  <section className="ayurveda-single-panel relative overflow-hidden bg-[#fcfbf7]" aria-label="Ayurvedic treatment at Punar Axis Therapy">
+    <div className="container relative z-10 mx-auto px-5 pb-6 pt-[96px] md:px-8 md:pb-8 md:pt-[104px]">
+      <div className="ayurveda-single-panel__intro text-center">
+        <p className="hero-kicker"><span />Ayurveda care in Noida<span /></p>
+        <h1 className="ayurveda-single-panel__heading">
+          Ayurvedic Treatment for <em>Lasting Relief</em>
+        </h1>
+        <p className="ayurveda-single-panel__location">
+          <MapPin aria-hidden />
+          <span>In Noida, Sector 141</span>
+        </p>
+      </div>
+
+      <div className="ayurveda-benefits" aria-label="Ayurveda care benefits">
+        {ayurvedaBenefits.map((benefit) => (
+          <span key={benefit.label}>
+            <benefit.icon className="h-4 w-4" aria-hidden />
+            {benefit.label}
+          </span>
+        ))}
+      </div>
+
+      <section className="ayurveda-offerings" aria-labelledby="ayurveda-offerings-title">
+        <h2 id="ayurveda-offerings-title" className="sr-only">Ayurveda Conditions and Therapies</h2>
+        <div className="ayurveda-offerings__layout">
+          <div className="ayurveda-conditions-block" aria-labelledby="ayurveda-conditions-title">
+            <h2 id="ayurveda-conditions-title">Conditions We Treat</h2>
+            <div className="ayurveda-conditions-grid">
+              {ayurvedaConcerns.map((concern) => (
+                <article key={concern.label} className="ayurveda-condition-card">
+                  <img
+                    src={concern.image}
+                    alt=""
+                    width={215}
+                    height={195}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <h3>{concern.label}</h3>
+                </article>
+              ))}
+              <article className="ayurveda-condition-card ayurveda-more-card ayurveda-more-card--condition">
+                <h3>And More</h3>
+              </article>
+            </div>
+          </div>
+
+          <div className="ayurveda-therapies-block" aria-labelledby="ayurveda-therapies-title">
+            <div className="ayurveda-therapies-header">
+              <h2 id="ayurveda-therapies-title">Ayurvedic Therapies We Offer</h2>
+            </div>
+            <div className="ayurveda-therapies-grid">
+              {ayurvedaTherapies.map((therapy) => (
+                <article key={therapy.label} className="ayurveda-therapy-card group">
+                  <div className="ayurveda-therapy-card__image">
+                    <img
+                      src={therapy.image}
+                      alt={`${therapy.label} Ayurveda therapy`}
+                      width={376}
+                      height={220}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="ayurveda-therapy-card__content">
+                    <h3>{therapy.label}</h3>
+                  </div>
+                </article>
+              ))}
+              <article className="ayurveda-therapy-card ayurveda-more-card ayurveda-more-card--therapy">
+                <Plus aria-hidden />
+                <h3>More Therapies</h3>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+);
 
 export const HeroSlider = ({ page = "home" }: { page?: LandingPageKey }) => {
   const serviceOrder = LANDING_PAGE_VARIANTS[page].serviceOrder;
